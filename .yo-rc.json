@@ -1,0 +1,43 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "ro.upb.elth.licenta.bogdan",
+      "nativeLanguage": "ro"
+    },
+    "jhipsterVersion": "6.10.5",
+    "applicationType": "monolith",
+    "baseName": "SparkMe",
+    "packageName": "ro.upb.elth.licenta.bogdan",
+    "packageFolder": "ro/upb/elth/licenta/bogdan",
+    "serverPort": "8080",
+    "authenticationType": "jwt",
+    "cacheProvider": "ehcache",
+    "enableHibernateCache": false,
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "h2Disk",
+    "prodDatabaseType": "postgresql",
+    "searchEngine": false,
+    "messageBroker": false,
+    "serviceDiscoveryType": false,
+    "buildTool": "maven",
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "OWQzNTgxMWRkNmQ3OTUxOWJjZjZjYWVmMWM0Y2QyMDYwNDYyY2EwMWZlNDM0MGUwZWQ2ZjhhN2QzMDNkMTlhZTI4NDg5OGExN2NiOTE4YzdjY2U3NGNlNTI4NjBlZjUwMGIwMmY3ZTc1NmE5OGRiYzlkYTk5MGE5Y2RkYzRkNDg=",
+    "embeddableLaunchScript": false,
+    "useSass": true,
+    "clientPackageManager": "npm",
+    "clientFramework": "angularX",
+    "clientTheme": "lux",
+    "clientThemeVariant": "primary",
+    "creationTimestamp": 1618927860394,
+    "testFrameworks": [],
+    "jhiPrefix": "jhi",
+    "entitySuffix": "",
+    "dtoSuffix": "DTO",
+    "otherModules": [],
+    "enableTranslation": true,
+    "nativeLanguage": "ro",
+    "languages": ["ro", "en"],
+    "blueprints": []
+  }
+}
