@@ -141,7 +141,7 @@ jhipster:
   #     allow-credentials: true
   #     max-age: 1800
   mail:
-    from: SparkMe@localhost
+    from: sparkmeteam@gmail.com
   swagger:
     default-include-pattern: /api/.*
     title: SparkMe API

@@ -1,0 +1,143 @@
+<style>
+    #inc {
+        font-style: italic;
+    }
+</style>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-12 d-flex justify-content-center align-items-center">
+            
+            <div class="p-3 border border-primary rounded" *ngIf="statie">
+                <h2><fa-icon [icon]="faChargingStation"></fa-icon><span>{{statie.denumire}}</span></h2>
+    
+                <hr>
+    
+                <jhi-alert-error></jhi-alert-error>
+    
+                <dl class="row-md jh-entity-details">
+                    <dt><span jhiTranslate="sparkMeApp.statie.producator">Producator</span></dt>
+                    <dd>
+                        <span>{{ statie.producator }}</span>
+                    </dd>
+                    <dt><span jhiTranslate="sparkMeApp.statie.model">Model</span></dt>
+                    <dd>
+                        <span>{{ statie.model }}</span>
+                    </dd>
+                    <dt><span jhiTranslate="sparkMeApp.statie.latitudine">Latitudine</span></dt>
+                    <dd>
+                        <span>{{ statie.latitudine }}</span>
+                    </dd>
+                    <dt><span jhiTranslate="sparkMeApp.statie.longitudine">Longitudine</span></dt>
+                    <dd>
+                        <span>{{ statie.longitudine }}</span>
+                    </dd>
+                    <dt><span jhiTranslate="sparkMeApp.statie.statut">Statut</span></dt>
+                    <dd>
+                        <span jhiTranslate="{{ 'sparkMeApp.StatutStatie.' + statie.statut }}">{{ statie.statut }}</span>
+                    </dd>
+                    <dt><span jhiTranslate="sparkMeApp.statie.tipCost">Tip Cost</span></dt>
+                    <dd>
+                        <span jhiTranslate="{{ 'sparkMeApp.TipCost.' + statie.tipCost }}">{{ statie.tipCost }}</span>
+                    </dd>
+                    <dt><span jhiTranslate="sparkMeApp.statie.descriereCost">Descriere Cost</span></dt>
+                    <dd>
+                        <span>{{ statie.descriereCost }}</span>
+                    </dd>
+                    <dt><span jhiTranslate="sparkMeApp.statie.locatie">Locatie</span></dt>
+                    <dd>
+                        <div *ngIf="statie.locatie">
+                            <a [routerLink]="['/locatie', statie.locatie?.id, 'view']">{{ statie.locatie?.denumire }}</a>
+                        </div>
+                    </dd>
+                    <dt><span jhiTranslate="sparkMeApp.statie.retea">Retea</span></dt>
+                    <dd>
+                        <div *ngIf="statie.retea">
+                            <a [routerLink]="['/retea', statie.retea?.id, 'view']">{{ statie.retea?.denumire }}</a>
+                        </div>
+                    </dd>
+                </dl>
+    
+                <button type="submit"
+                        (click)="previousState()"
+                        class="btn btn-info">
+                    <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+                </button>
+    
+                <button *jhiHasAnyAuthority="'ROLE_ADMIN'" type="button"
+                        [routerLink]="['/statie', statie.id, 'edit']"
+                        class="btn btn-primary">
+                    <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+                </button>
+            </div>
+        </div>
+    
+        <div class="container row justify-content-center mt-5"><h2 id="inc"><span jhiTranslate="sparkMeApp.statie.listaIncarcatoare">Lista incarcatoare:</span></h2></div>  
+
+        <div class="p-3 border border-secondary rounded row d-flex justify-content-center">
+            <div *ngFor="let incarcator of incarcatoare">
+                <div *ngIf="incarcator.statie!.id === statie!.id">
+                
+                    <div class="col-12 mx-auto my-4">
+                <h2><fa-icon [icon]="faBatteryThreeQuarters"></fa-icon><span >{{ incarcator.denumireConector }}</span></h2>
+    
+                <hr>
+    
+                <jhi-alert-error></jhi-alert-error>
+    
+                <dl class="row-md jh-entity-details">
+                    
+                    <dt><span jhiTranslate="sparkMeApp.incarcator.conector">Conector</span></dt>
+                    <dd>
+                        <span jhiTranslate="{{ 'sparkMeApp.Conector.' + incarcator.conector }}">{{ incarcator.conector }}</span>
+                    </dd>
+                    <dt><span jhiTranslate="sparkMeApp.incarcator.descriereConector">Descriere Conector</span></dt>
+                    <dd>
+                        <span>{{ incarcator.descriereConector }}</span>
+                    </dd>
+                    <dt><span jhiTranslate="sparkMeApp.incarcator.disponibilitate">Disponibilitate</span></dt>
+                    <dd>
+                        <span jhiTranslate="{{ 'sparkMeApp.Disponibilitate.' + incarcator.disponibilitate }}">{{ incarcator.disponibilitate }}</span>
+                    </dd>
+                    <dt><span jhiTranslate="sparkMeApp.incarcator.putere">Putere</span></dt>
+                    <dd>
+                        <span>{{ incarcator.putere + " kW"}}</span>
+                    </dd>
+                    <dt><span jhiTranslate="sparkMeApp.incarcator.statie">Statie</span></dt>
+                    <dd>
+                        <div *ngIf="incarcator.statie">
+                            <a [routerLink]="['/statie', incarcator.statie?.id, 'view']">{{ incarcator.statie?.denumire }}</a>
+                        </div>
+                    </dd>
+                </dl>
+    
+                <div *jhiHasAnyAuthority="'ROLE_USER'">
+                    <button [disabled]="areRezervare" *ngIf="verificaDisponibilitate(incarcator)" (click) = "rezervaIncarcator(incarcator)" type="button"
+                            [routerLink]="['/rezervare/new']"
+                            class="btn btn-warning">
+                        <fa-icon></fa-icon>&nbsp;<span jhiTranslate="sparkMeApp.statie.butonRezerva">Book</span>
+                    </button>   
+            </div>        
+    
+                <button *jhiHasAnyAuthority="'ROLE_ADMIN'" type="button"
+                        [routerLink]="['/incarcator', incarcator.id, 'edit']"
+                        class="btn btn-primary">
+                    <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+                </button>
+
+                <!-- Validare rezervare 1 ora: -->
+                <div class="container-fluid" *ngIf="areRezervare">
+                    <small class="form-text text-danger" jhiTranslate="entity.validation.rezervareUrmatoareaOra">
+                        Aveti deja o rezervare in urmatoarea ora!
+                    </small>
+                </div>
+                <!-- Validare rezervare 1 ora: -->           
+           
+        </div>    
+          </div>   
+        </div>
+        </div>
+        </div>
+    </div>
+
+    

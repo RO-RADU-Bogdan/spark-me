@@ -1,0 +1,28 @@
+{
+  "sparkMeApp": {
+    "vehicul": {
+      "home": {
+        "title": "Vehicule",
+        "createLabel": "Adaugă un nou vehicul",
+        "createOrEditLabel": "Creeare sau editare vehicul",
+        "notFound": "Nu a fost găsit niciun vehicul"
+      },
+      "created": "A fost adăugat un nou vehicul cu id {{ param }}",
+      "updated": "Vehiculul cu id {{ param }} a fost actualizat",
+      "deleted": "Vehiculul cu id {{ param }} a fost șters",
+      "delete": {
+        "question": "Sunteți sigur că doriți să ștergeți vehiculul {{ id }}?"
+      },
+      "detail": {
+        "title": "Vehicul"
+      },
+      "marca": "Marca",
+      "model": "Model",
+      "anFabricatie": "An Fabricație",
+      "culoare": "Culoare",
+      "descriere": "Descriere",
+      "conector": "Conector",
+      "user": "User"
+    }
+  }
+}

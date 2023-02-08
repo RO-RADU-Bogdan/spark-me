@@ -1,0 +1,90 @@
+<div>
+    <h2 id="page-heading">
+        <fa-icon [icon]="faChargingStation"></fa-icon>
+        <span jhiTranslate="sparkMeApp.statie.home.title">Staties</span>
+
+        <button *jhiHasAnyAuthority="'ROLE_ADMIN'" id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-statie" [routerLink]="['/statie/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span  jhiTranslate="sparkMeApp.statie.home.createLabel">
+            Create a new Statie
+            </span>
+        </button>
+   
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="staties?.length === 0">
+        <span jhiTranslate="sparkMeApp.statie.home.notFound">No staties found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="staties && staties.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="reset.bind(this)">
+                    <th *jhiHasAnyAuthority="'ROLE_ADMIN'" scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="denumire"><span jhiTranslate="sparkMeApp.statie.denumire">Denumire</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="producator"><span jhiTranslate="sparkMeApp.statie.producator">Producator</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="model"><span jhiTranslate="sparkMeApp.statie.model">Model</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="latitudine"><span jhiTranslate="sparkMeApp.statie.latitudine">Latitudine</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="longitudine"><span jhiTranslate="sparkMeApp.statie.longitudine">Longitudine</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="statut"><span jhiTranslate="sparkMeApp.statie.statut">Statut</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="tipCost"><span jhiTranslate="sparkMeApp.statie.tipCost">Tip Cost</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="descriereCost"><span jhiTranslate="sparkMeApp.statie.descriereCost">Descriere Cost</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="locatie.denumire"><span jhiTranslate="sparkMeApp.statie.locatie">Locatie</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="retea.denumire"><span jhiTranslate="sparkMeApp.statie.retea">Retea</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+                <tr *ngFor="let statie of staties ;trackBy: trackId">
+                    <td *jhiHasAnyAuthority="'ROLE_ADMIN'"><a [routerLink]="['/statie', statie.id, 'view']">{{ statie.id }}</a></td>
+                    <td>{{ statie.denumire }}</td>
+                    <td>{{ statie.producator }}</td>
+                    <td>{{ statie.model }}</td>
+                    <td>{{ statie.latitudine }}</td>
+                    <td>{{ statie.longitudine }}</td>
+                    <td jhiTranslate="{{ 'sparkMeApp.StatutStatie.' + statie.statut }}">{{ statie.statut }}</td>
+                    <td jhiTranslate="{{ 'sparkMeApp.TipCost.' + statie.tipCost }}">{{ statie.tipCost }}</td>
+                    <td>{{ statie.descriereCost }}</td>
+                    <td>
+                        <div *ngIf="statie.locatie">
+                            <a [routerLink]="['/locatie', statie.locatie?.id, 'view']" >{{ statie.locatie?.denumire }}</a>
+                        </div>
+                    </td>
+                    <td>
+                        <div *ngIf="statie.retea">
+                            <a [routerLink]="['/retea', statie.retea?.id, 'view']" >{{ statie.retea?.denumire }}</a>
+                        </div>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/statie', statie.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                            </button>
+
+                            <button *jhiHasAnyAuthority="'ROLE_ADMIN'" type="submit"
+                                    [routerLink]="['/statie', statie.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                            </button>
+
+                            <button *jhiHasAnyAuthority="'ROLE_ADMIN'" type="submit" (click)="delete(statie)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                            </button>
+                       
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

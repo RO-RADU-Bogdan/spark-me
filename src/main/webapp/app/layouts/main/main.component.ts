@@ -11,6 +11,7 @@ import { AccountService } from 'app/core/auth/account.service';
 })
 export class MainComponent implements OnInit {
   private renderer: Renderer2;
+  currentRoute;
 
   constructor(
     private accountService: AccountService,
@@ -29,6 +30,7 @@ export class MainComponent implements OnInit {
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
         this.updateTitle();
+        this.currentRoute = this.router.url; // preia path curent
       }
       if (event instanceof NavigationError && event.error.status === 404) {
         this.router.navigate(['/404']);

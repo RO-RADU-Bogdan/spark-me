@@ -1,0 +1,50 @@
+<style>
+    agm-map {
+  height: 89.8vh;
+  width: 100vw;
+}
+    p.titlu {
+        font-size: 16px;
+        font-weight: bold;
+        color: #1c86c2;
+    }
+    span.camp {
+        font-weight: bold;
+    }
+    a {
+        font-size: 12px;
+        font-weight: bold;
+        color: #1c86c2;
+    }
+</style>
+<agm-map [minZoom]="4" [zoom]="13" [latitude]="lat" [longitude]="long">
+       
+        <agm-marker *ngFor="let statie of statii" [markerClickable]="true" [latitude]="statie.latitudine" [longitude]="statie.longitudine">
+
+    <agm-info-window class="d-flex justify-content-center align-items-center">
+        
+        <p class="titlu d-flex justify-content-center"><fa-icon [icon]="faChargingStation"></fa-icon>{{statie.denumire}}</p>
+        <span class="camp" jhiTranslate="sparkMeApp.statie.statut">Statut</span>
+        <span>:</span>
+        <span jhiTranslate="{{ 'sparkMeApp.StatutStatie.' + statie.statut }}">{{statie.statut}}</span> <br>
+
+        <span class="camp" jhiTranslate="sparkMeApp.statie.tipCost">Tip Cost</span>
+        <span>:</span>
+        <span jhiTranslate="{{ 'sparkMeApp.TipCost.' + statie.tipCost }}">{{statie.tipCost}}</span> <br>
+        
+        
+        <span class="camp" jhiTranslate="sparkMeApp.statie.descriereCost">Descriere Cost</span>
+        <span>:</span>
+        <span>{{statie.descriereCost}}</span> <br>
+        
+        
+        <span class="camp" jhiTranslate="sparkMeApp.statie.retea">Retea</span>
+        <span>:</span>
+        <span *ngIf="statie.retea">{{statie.retea.denumire}}</span> 
+
+        <div class="container d-flex justify-content-center mx-2 my-2">
+             <a jhiTranslate="sparkMeApp.map.butonDetalii" routerLink="/statie/{{statie.id}}/view">View Details</a>
+        </div>
+    </agm-info-window>
+</agm-marker>
+  </agm-map>

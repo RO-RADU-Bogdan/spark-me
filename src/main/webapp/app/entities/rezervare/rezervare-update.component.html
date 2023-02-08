@@ -1,0 +1,172 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-rezervare-heading" jhiTranslate="sparkMeApp.rezervare.home.createOrEditLabel">Create or edit a Rezervare</h2>
+
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="sparkMeApp.rezervare.dataCreare" for="field_dataCreare">Data Creare</label>
+                    <div class="d-flex">
+                        <input [attr.disabled]=true id="field_dataCreare" type="datetime-local" class="form-control" name="dataCreare" formControlName="dataCreare" placeholder="YYYY-MM-DD HH:mm"/>
+                    </div>
+                    <div *ngIf="editForm.get('dataCreare')!.invalid && (editForm.get('dataCreare')!.dirty || editForm.get('dataCreare')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('dataCreare')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('dataCreare')?.errors?.ZonedDateTimelocal" jhiTranslate="entity.validation.ZonedDateTimelocal">
+                            This field should be a date and time.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="sparkMeApp.rezervare.dataExpirare" for="field_dataExpirare">Data Expirare</label>
+                    <div class="d-flex">
+                        <input [attr.disabled]=true id="field_dataExpirare" type="datetime-local" class="form-control" name="dataExpirare" formControlName="dataExpirare" placeholder="YYYY-MM-DD HH:mm"/>
+                    </div>
+                    <div *ngIf="editForm.get('dataExpirare')!.invalid && (editForm.get('dataExpirare')!.dirty || editForm.get('dataExpirare')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('dataExpirare')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('dataExpirare')?.errors?.ZonedDateTimelocal" jhiTranslate="entity.validation.ZonedDateTimelocal">
+                            This field should be a date and time.
+                        </small>
+                    </div>
+                </div>
+
+                <!-- Validare rezervare existenta in intervalul oral selectat: -->
+                <div *ngIf="!disponibil">
+                    <small class="form-text text-danger" jhiTranslate="entity.validation.rezervareExistenta">
+                    </small>
+                    <small class="form-text text-danger">
+                        {{mesajRezervareExistenta}}
+                    </small>
+                </div>
+                <!-- Validare rezervare existenta in intervalul oral selectat: -->
+                
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="sparkMeApp.rezervare.dataStart" for="field_dataStart">Data Start</label>
+                    <div class="d-flex">
+                        <input id="field_dataStart" type="datetime-local" [min]="minDateString" [max]="maxDateString" class="form-control" name="dataStart" formControlName="dataStart" placeholder="YYYY-MM-DD HH:mm"/>
+                    </div>
+                    <div *ngIf="editForm.get('dataStart')!.invalid && (editForm.get('dataStart')!.dirty || editForm.get('dataStart')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('dataStart')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('dataStart')?.errors?.ZonedDateTimelocal" jhiTranslate="entity.validation.ZonedDateTimelocal">
+                            This field should be a date and time.
+                        </small>
+                    </div>
+                    <!-- Validare data start: -->
+                    <div *ngIf="!dataStartValida">
+                        <small class="form-text text-danger" jhiTranslate="entity.validation.invalidStartHours">
+                            Data de finalizare a rezervarii nu poate fi inaintea datei de inceput.
+                        </small>
+                    </div>
+                    <!-- Validare data start: -->
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="sparkMeApp.rezervare.dataFinal" for="field_dataFinal">Data Final</label>
+                    <div class="d-flex">
+                        <input id="field_dataFinal" type="datetime-local" [min]="minDateString" [max]="maxDateString" class="form-control" name="dataFinal" formControlName="dataFinal" placeholder="YYYY-MM-DD HH:mm"/>
+                    </div>
+                    <div *ngIf="editForm.get('dataFinal')!.invalid && (editForm.get('dataFinal')!.dirty || editForm.get('dataFinal')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('dataFinal')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('dataFinal')?.errors?.ZonedDateTimelocal" jhiTranslate="entity.validation.ZonedDateTimelocal">
+                            This field should be a date and time.
+                        </small>
+                    </div>
+                    <!-- Validare data final: -->
+                    <div *ngIf="!dataFinalValida">
+                        <small class="form-text text-danger" jhiTranslate="entity.validation.invalidFinalHours">
+                            Data de finalizare a rezervarii nu poate fi inaintea datei de inceput.
+                        </small>
+                    </div>
+                    <!-- Validare data final: -->
+                    
+                    <!-- Validare data max: -->
+                <div *ngIf="!durataMaxValida">
+                    <small class="form-text text-danger" jhiTranslate="entity.validation.rezervareMaxOre">
+                        Rezervarea se poate face pentru maxim 12 ore!
+                    </small>
+                </div>
+                <!-- Validare data max: -->
+                </div>
+
+                <div class="form-group" hidden>
+                    <label class="form-control-label" jhiTranslate="sparkMeApp.rezervare.statut" for="field_statut">Statut</label>
+                    <select class="form-control" name="statut" formControlName="statut" id="field_statut">
+                        <option value="NECUNOSCUT">{{ 'sparkMeApp.StatutRezervare.NECUNOSCUT' | translate }}</option>
+                        <option value="CONFIRMAT">{{ 'sparkMeApp.StatutRezervare.CONFIRMAT' | translate }}</option>
+                        <option value="NECONFIRMAT">{{ 'sparkMeApp.StatutRezervare.NECONFIRMAT' | translate }}</option>
+                    </select>
+                    <div *ngIf="editForm.get('statut')!.invalid && (editForm.get('statut')!.dirty || editForm.get('statut')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('statut')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group" hidden>
+                    <label class="form-control-label" jhiTranslate="sparkMeApp.rezervare.user" for="field_user">User</label>
+                    <select [(ngModel)] = "currentUser" class="form-control" id="field_user" name="user" formControlName="user">
+                        <option [ngValue]="userOption.id === editForm.get('user')!.value?.id ? editForm.get('user')!.value : userOption" *ngFor="let userOption of users; trackBy: trackById">{{ userOption.login }}</option>
+                    </select>
+                </div>
+
+                <!-- Incarcator rezervat folosind serviceIncarcator -->
+                <div *ngIf="rezervare.incarcator; else elseBlock" class="form-group">
+                    <label class="form-control-label" jhiTranslate="sparkMeApp.rezervare.incarcator" for="field_incarcator">Incarcator</label>    
+                    <select [(ngModel)]="rezervare.incarcator" [attr.disabled]=true class="form-control" id="field_incarcator" name="incarcator" formControlName="incarcator">   
+                        <option [ngValue]="incarcatorOption.id === editForm.get('incarcator')!.value?.id ? editForm.get('incarcator')!.value : incarcatorOption" *ngFor="let incarcatorOption of incarcators; trackBy: trackById">{{ incarcatorOption.denumireConector }}</option>
+                    </select>
+                </div>
+
+                <!-- Validare incarcator rezervat: -->
+                <div class="my-2" *ngIf="!incarcatorRezervat">
+                    <small class="form-text text-danger" jhiTranslate="entity.validation.rezervareIncarcatorNeselectat">
+                        Va rugam sa va intoarceti si sa selectati un incarcator!
+                    </small>
+                </div>
+                <!-- Validare incarcator rezervat: -->   
+
+                <ng-template #elseBlock><div class="form-group">
+                    <label class="form-control-label" jhiTranslate="sparkMeApp.rezervare.incarcator" for="field_incarcator">Incarcator</label>    
+                    <select [(ngModel)]="incarcatorRezervat" [attr.disabled]=true class="form-control" id="field_incarcator" name="incarcator" formControlName="incarcator">   
+                        <option [ngValue]="incarcatorOption.id === editForm.get('incarcator')!.value?.id ? editForm.get('incarcator')!.value : incarcatorOption" *ngFor="let incarcatorOption of incarcators; trackBy: trackById">{{ incarcatorOption.denumireConector }}</option>
+                    </select>
+                </div></ng-template>
+            </div>
+
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-primary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving || !incarcatorRezervat || !dataStartValida || !dataFinalValida || !durataMaxValida || !disponibil" class="btn btn-success">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+           
+            </div>
+        </form>
+    </div>
+</div>

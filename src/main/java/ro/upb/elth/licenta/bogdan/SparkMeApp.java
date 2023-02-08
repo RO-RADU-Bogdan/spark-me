@@ -1,13 +1,19 @@
 package ro.upb.elth.licenta.bogdan;
 
 import ro.upb.elth.licenta.bogdan.config.ApplicationProperties;
-
+import ro.upb.elth.licenta.bogdan.domain.Rezervare;
+import ro.upb.elth.licenta.bogdan.domain.enumeration.Disponibilitate;
+import ro.upb.elth.licenta.bogdan.domain.enumeration.StatutRezervare;
+import ro.upb.elth.licenta.bogdan.repository.RezervareRepository;
+import ro.upb.elth.licenta.bogdan.service.MailService;
+import ro.upb.elth.licenta.bogdan.web.rest.RezervareResource;
 import io.github.jhipster.config.DefaultProfileUtil;
 import io.github.jhipster.config.JHipsterConstants;
 
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.liquibase.LiquibaseProperties;
@@ -22,7 +28,7 @@ import java.util.Collection;
 
 @SpringBootApplication
 @EnableConfigurationProperties({LiquibaseProperties.class, ApplicationProperties.class})
-public class SparkMeApp {
+public class SparkMeApp extends Thread {
 
     private static final Logger log = LoggerFactory.getLogger(SparkMeApp.class);
 
@@ -58,6 +64,7 @@ public class SparkMeApp {
      * @param args the command line arguments.
      */
     public static void main(String[] args) {
+
         SpringApplication app = new SpringApplication(SparkMeApp.class);
         DefaultProfileUtil.addDefaultProfile(app);
         Environment env = app.run(args).getEnvironment();

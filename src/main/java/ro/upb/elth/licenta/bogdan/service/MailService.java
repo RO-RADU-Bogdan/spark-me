@@ -1,10 +1,22 @@
 package ro.upb.elth.licenta.bogdan.service;
 
+import ro.upb.elth.licenta.bogdan.domain.Rezervare;
 import ro.upb.elth.licenta.bogdan.domain.User;
 
 import io.github.jhipster.config.JHipsterProperties;
 
 import java.nio.charset.StandardCharsets;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.OffsetDateTime;
+import java.time.ZoneId;
+import java.time.ZoneOffset;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
@@ -31,6 +43,8 @@ public class MailService {
     private final Logger log = LoggerFactory.getLogger(MailService.class);
 
     private static final String USER = "user";
+
+    private static final String REZERVARE = "data";    // rezervare parametru pt. template
 
     private static final String BASE_URL = "baseUrl";
 
@@ -86,6 +100,32 @@ public class MailService {
         sendEmail(user.getEmail(), subject, content, false, true);
     }
 
+    // sendEmailFromTemplateRezervari
+    @Async
+    public void sendEmailFromTemplateRezervari(User user, Rezervare rezervare, String templateName, String titleKey) {
+        if (user.getEmail() == null) {
+            log.debug("Email doesn't exist for user '{}'", user.getLogin());
+            return;
+        }
+
+        // Formatare data:
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm");    
+        ZonedDateTime zonedDateTime = rezervare.getDataStart().atZone(ZoneId.systemDefault());
+        
+
+        String formatedDate = zonedDateTime.format(formatter);
+        //
+
+        Locale locale = Locale.forLanguageTag(user.getLangKey());
+        Context context = new Context(locale);
+        context.setVariable(USER, user);
+        context.setVariable(REZERVARE, formatedDate);
+        context.setVariable(BASE_URL, jHipsterProperties.getMail().getBaseUrl());
+        String content = templateEngine.process(templateName, context);
+        String subject = messageSource.getMessage(titleKey, null, locale);
+        sendEmail(user.getEmail(), subject, content, false, true);
+    }
+
     @Async
     public void sendActivationEmail(User user) {
         log.debug("Sending activation email to '{}'", user.getEmail());
@@ -103,4 +143,19 @@ public class MailService {
         log.debug("Sending password reset email to '{}'", user.getEmail());
         sendEmailFromTemplate(user, "mail/passwordResetEmail", "email.reset.title");
     }
+
+    // Metode trimis mail rezervare finalizata / expirata:
+    @Async
+    public void sendRezervareFinalizataEmail(User user, Rezervare rezervare) {
+        log.debug("Sending rezervareFinalizata email to '{}'", user.getEmail());
+        sendEmailFromTemplateRezervari(user, rezervare, "mail/rezervareFinalizataEmail", "email.rezervareFinalizata.title");
+    }
+
+    @Async
+    public void sendRezervareExpirataEmail(User user, Rezervare rezervare) {
+        log.debug("Sending rezervareExpirata email to '{}'", user.getEmail());
+        sendEmailFromTemplateRezervari(user, rezervare, "mail/rezervareExpirataEmail", "email.rezervareExpirata.title");
+    }
+
+    //
 }

@@ -1,0 +1,117 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-incarcator-heading" jhiTranslate="sparkMeApp.incarcator.home.createOrEditLabel">Create or edit a Incarcator</h2>
+
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="sparkMeApp.incarcator.denumireConector" for="field_denumireConector">Denumire Conector</label>
+                    <input type="text" class="form-control" name="denumireConector" id="field_denumireConector"
+                           formControlName="denumireConector"/>
+                    <div *ngIf="editForm.get('denumireConector')!.invalid && (editForm.get('denumireConector')!.dirty || editForm.get('denumireConector')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('denumireConector')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('denumireConector')?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 55 }">
+                        This field cannot be longer than 55 characters.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="sparkMeApp.incarcator.conector" for="field_conector">Conector</label>
+                    <select class="form-control" name="conector" formControlName="conector" id="field_conector">
+                        <option value="TYPE1">{{ 'sparkMeApp.Conector.TYPE1' | translate }}</option>
+                        <option value="TYPE2">{{ 'sparkMeApp.Conector.TYPE2' | translate }}</option>
+                        <option value="TYPE3">{{ 'sparkMeApp.Conector.TYPE3' | translate }}</option>
+                        <option value="TYPE4">{{ 'sparkMeApp.Conector.TYPE4' | translate }}</option>
+                    </select>
+                    <div *ngIf="editForm.get('conector')!.invalid && (editForm.get('conector')!.dirty || editForm.get('conector')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('conector')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="sparkMeApp.incarcator.descriereConector" for="field_descriereConector">Descriere Conector</label>
+                    <input type="text" class="form-control" name="descriereConector" id="field_descriereConector"
+                           formControlName="descriereConector"/>
+                    <div *ngIf="editForm.get('descriereConector')!.invalid && (editForm.get('descriereConector')!.dirty || editForm.get('descriereConector')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('descriereConector')?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 255 }">
+                        This field cannot be longer than 255 characters.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="sparkMeApp.incarcator.disponibilitate" for="field_disponibilitate">Disponibilitate</label>
+                    <select [attr.disabled]="create" class="form-control" name="disponibilitate" formControlName="disponibilitate" id="field_disponibilitate">
+                        <option value="NECUNOSCUT">{{ 'sparkMeApp.Disponibilitate.NECUNOSCUT' | translate }}</option>
+                        <option value="DISPONIBIL">{{ 'sparkMeApp.Disponibilitate.DISPONIBIL' | translate }}</option>
+                        <option value="OCUPAT">{{ 'sparkMeApp.Disponibilitate.OCUPAT' | translate }}</option>
+                    </select>
+                    <div *ngIf="editForm.get('disponibilitate')!.invalid && (editForm.get('disponibilitate')!.dirty || editForm.get('disponibilitate')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('disponibilitate')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="sparkMeApp.incarcator.putere" for="field_putere">Putere</label>
+                    <input type="number" class="form-control" name="putere" id="field_putere"
+                           formControlName="putere"/>
+                    <div *ngIf="editForm.get('putere')!.invalid && (editForm.get('putere')!.dirty || editForm.get('putere')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('putere')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('putere')?.errors?.min" jhiTranslate="entity.validation.min" [translateValues]="{ min: 0 }">
+                            This field should be at least 0.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('putere')?.errors?.max" jhiTranslate="entity.validation.max" [translateValues]="{ max: 999 }">
+                            This field cannot be more than 999.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('putere')?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="sparkMeApp.incarcator.statie" for="field_statie">Statie</label>
+                    <select class="form-control" id="field_statie" name="statie" formControlName="statie">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="statieOption.id === editForm.get('statie')!.value?.id ? editForm.get('statie')!.value : statieOption" *ngFor="let statieOption of staties; trackBy: trackById">{{ statieOption.denumire }}</option>
+                    </select>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

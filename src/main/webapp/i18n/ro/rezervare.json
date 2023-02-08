@@ -1,0 +1,28 @@
+{
+  "sparkMeApp": {
+    "rezervare": {
+      "home": {
+        "title": "Rezervări",
+        "createLabel": "Rezervare nouă",
+        "createOrEditLabel": "Creeare sau editare rezervare",
+        "notFound": "Nu a fost găsită nicio rezervare"
+      },
+      "created": "A fost creată o nouă entitate rezervare cu id {{ param }}",
+      "updated": "Rezervarea cu id {{ param }} a fost actualizată",
+      "deleted": "Rezervarea cu id {{ param }} a fost ștearsă",
+      "delete": {
+        "question": "Sunteți sigur că doriți să ștergeți rezervarea {{ id }}?"
+      },
+      "detail": {
+        "title": "Rezervare"
+      },
+      "dataCreare": "Data Creare",
+      "dataExpirare": "Data Expirare",
+      "dataStart": "Data Start",
+      "dataFinal": "Data Final",
+      "statut": "Statut",
+      "user": "User",
+      "incarcator": "Încărcător"
+    }
+  }
+}

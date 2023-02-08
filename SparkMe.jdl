@@ -1,0 +1,120 @@
+enum Disponibilitate{
+    	NECUNOSCUT,
+        DISPONIBIL,
+        OCUPAT
+    }
+
+enum StatutRezervare {
+		NECUNOSCUT,
+        CONFIRMAT,
+        NECONFIRMAT,
+        EXPIRAT,
+        FINALIZAT
+}
+
+enum StatutStatie {
+		NECUNOSCUT,
+        DISPONIBIL,
+        OCUPAT,
+        INDISPONIBIL
+}
+
+enum TipCost {
+		NECUNOSCUT,
+        GRATUIT,
+        PLATA
+}
+
+enum Conector {
+		TYPE1,
+        TYPE2,
+        TYPE3,
+        TYPE4
+}
+
+enum TipAcces {
+		PUBLIC,
+        PRIVAT
+}
+
+entity Vehicul {
+	marca String required maxlength(50),
+	model String required maxlength(50),
+	anFabricatie Integer required min(1990) max(2021),
+	culoare String required maxlength(50),
+	descriere String maxlength(255),
+	conector Conector required
+}
+
+entity Rezervare {
+	dataCreare Instant required,
+	dataExpirare Instant required,
+	dataStart Instant required,
+	dataFinal Instant required,
+	statut StatutRezervare required
+}
+
+entity Locatie {
+	denumire String required maxlength(50),
+	descriere String required maxlength(255),
+	latitudine Double min(-90) max(90),
+	longitudine Double min(-180) max(180),
+	tipAcces TipAcces required
+}
+
+entity Statie {
+	denumire String required maxlength(50),
+	producator String required maxlength(50),
+	model String required maxlength(50),
+	latitudine Double min(-90) max(90),
+	longitudine Double min(-180) max(180),
+	statut StatutStatie required,
+	tipCost TipCost required,
+	descriereCost String maxlength(255)
+}
+
+entity Incarcator {
+	denumireConector String required maxlength(55)
+	conector Conector required,
+	descriereConector String maxlength(255),
+	disponibilitate Disponibilitate required,
+	putere Integer required min(0) max(999)
+}
+
+entity Retea {
+	denumire String required maxlength(50) unique,
+	descriere String maxlength(255)
+}
+
+// Relations
+relationship ManyToOne {
+	Incarcator{statie(denumire)} to Statie 
+}
+
+relationship ManyToOne {
+	Locatie{user(login)} to User
+}
+
+relationship ManyToOne {
+	Rezervare{user(login)} to User
+}
+
+relationship ManyToOne {
+	Rezervare{incarcator(denumireConector)} to Incarcator
+}
+
+relationship ManyToOne {
+	Statie{locatie(denumire)} to Locatie
+}
+
+relationship ManyToOne {
+	Statie{retea(denumire)} to Retea
+}
+
+relationship ManyToOne {
+	Vehicul{user(login)} to User
+}
+
+// Options
+paginate * with infinite-scroll
+

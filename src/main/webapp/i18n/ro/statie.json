@@ -1,0 +1,33 @@
+{
+  "sparkMeApp": {
+    "statie": {
+      "home": {
+        "title": "Stații",
+        "createLabel": "Adaugă o nouă stație",
+        "createOrEditLabel": "Creeare sau editare stație",
+        "notFound": "Nu a fost gasită nicio stație"
+      },
+      "created": "A fost adăugată o nouă stație cu id {{ param }}",
+      "updated": "Stația cu id {{ param }} a fost actualizată",
+      "deleted": "Stația cu id {{ param }} a fost ștearsă",
+      "delete": {
+        "question": "Sunteți sigur că doriți să ștergeți stația {{ id }}?"
+      },
+      "detail": {
+        "title": "Stație"
+      },
+      "denumire": "Denumire",
+      "producator": "Producator",
+      "model": "Model",
+      "latitudine": "Latitudine",
+      "longitudine": "Longitudine",
+      "statut": "Statut",
+      "tipCost": "Tip Cost",
+      "descriereCost": "Descriere Cost",
+      "locatie": "Locație",
+      "retea": "Rețea",
+      "listaIncarcatoare": "Încărcătoare:",
+      "butonRezerva": "Rezervă"
+    }
+  }
+}

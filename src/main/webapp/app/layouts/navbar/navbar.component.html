@@ -1,4 +1,14 @@
-<nav class="navbar navbar-dark navbar-expand-md bg-primary">
+<style>
+    a.nav-link:hover {
+        background-color: #001f3f;
+    }
+
+    a.dropdown-item:hover {
+        background-color: #DDDDDD;
+    }
+</style>
+
+<nav class="navbar fixed-top navbar-dark navbar-expand-md bg-primary">
     <a class="navbar-brand logo" routerLink="/" (click)="collapseNavbar()">
         <span class="logo-img"></span>
         <span jhiTranslate="global.title" class="navbar-title">SparkMe</span> <span class="navbar-version">{{ version }}</span>
@@ -16,6 +26,16 @@
                     </span>
                 </a>
             </li>
+
+            <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+                <a class="nav-link" routerLink="map">
+                    <span>
+                        <fa-icon [icon]="faMapMarkedAlt"></fa-icon>
+                        <span jhiTranslate="global.menu.entities.harta">Map</span>
+                    </span>
+                </a>
+            </li>
+
             <!-- jhipster-needle-add-element-to-menu - JHipster will add new menu items here -->
             <li *ngSwitchCase="true" ngbDropdown class="nav-item dropdown pointer" display="dynamic" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
                 <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="entity-menu">
@@ -27,6 +47,49 @@
                     </span>
                 </a>
                 <ul class="dropdown-menu" ngbDropdownMenu aria-labelledby="entity-menu">
+
+                    <li>
+                        <a class="dropdown-item" routerLink="vehicul" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <fa-icon [icon]="faCar"></fa-icon>
+                            <span jhiTranslate="global.menu.entities.vehicul">Vehicul</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a class="dropdown-item" routerLink="rezervare" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <fa-icon [icon]="faBook"></fa-icon>
+                            <span jhiTranslate="global.menu.entities.rezervare">Rezervare</span>
+                        </a>
+                    </li>
+
+                    <li *jhiHasAnyAuthority="'ROLE_ADMIN'">
+                        <a class="dropdown-item" routerLink="locatie" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <fa-icon [icon]="faLocationArrow"></fa-icon>
+                            <span jhiTranslate="global.menu.entities.locatie">Locatie</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a class="dropdown-item" routerLink="statie" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <fa-icon [icon]="faChargingStation"></fa-icon>
+                            <span jhiTranslate="global.menu.entities.statie">Statie</span>
+                        </a>
+                    </li>
+
+                    <li *jhiHasAnyAuthority="'ROLE_ADMIN'">
+                        <a class="dropdown-item" routerLink="incarcator" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <fa-icon [icon]="faBatteryThreeQuarters"></fa-icon>
+                            <span jhiTranslate="global.menu.entities.incarcator">Incarcator</span>
+                        </a>
+                    </li>
+                    
+                    <li *jhiHasAnyAuthority="'ROLE_ADMIN'">
+                        <a class="dropdown-item" routerLink="retea" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <fa-icon [icon]="faUsers"></fa-icon>
+                            <span jhiTranslate="global.menu.entities.retea">Retea</span>
+                        </a>
+                    </li>
+                    
                     <!-- jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here -->
                 </ul>
             </li>

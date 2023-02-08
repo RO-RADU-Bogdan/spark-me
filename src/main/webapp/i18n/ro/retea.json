@@ -1,0 +1,23 @@
+{
+  "sparkMeApp": {
+    "retea": {
+      "home": {
+        "title": "Rețele",
+        "createLabel": "Adaugă o nouă rețea",
+        "createOrEditLabel": "Creeare sau editare rețea",
+        "notFound": "Nu a fost găsită nicio rețea"
+      },
+      "created": "A fost adăugată o nouă rețea cu id {{ param }}",
+      "updated": "Rețea cu id {{ param }} a fost actualizată",
+      "deleted": "Rețea cu id {{ param }} a fost ștearsă",
+      "delete": {
+        "question": "Sunteți sigur că doriți să ștergeți rețeaua {{ id }}?"
+      },
+      "detail": {
+        "title": "Rețea"
+      },
+      "denumire": "Denumire",
+      "descriere": "Descriere"
+    }
+  }
+}

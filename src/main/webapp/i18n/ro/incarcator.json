@@ -1,0 +1,27 @@
+{
+  "sparkMeApp": {
+    "incarcator": {
+      "home": {
+        "title": "Încărcătoare",
+        "createLabel": "Adaugă un nou încărcător",
+        "createOrEditLabel": "Creeare sau editare încărcător",
+        "notFound": "Nu a fost găsit niciun încărcător"
+      },
+      "created": "A fost adăugat un nou încărcător cu id {{ param }}",
+      "updated": "Încărcătorul cu id {{ param }} a fost actualizat",
+      "deleted": "Încărcătorul cu id {{ param }} a fost șters",
+      "delete": {
+        "question": "Sunteți sigur că doriți să ștergeți încărcătorul {{ id }}?"
+      },
+      "detail": {
+        "title": "Încărcător"
+      },
+      "denumireConector": "Denumire Conector",
+      "conector": "Conector",
+      "descriereConector": "Descriere Conector",
+      "disponibilitate": "Disponibilitate",
+      "putere": "Putere",
+      "statie": "Stație"
+    }
+  }
+}

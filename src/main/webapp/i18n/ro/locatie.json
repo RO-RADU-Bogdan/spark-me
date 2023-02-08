@@ -1,0 +1,27 @@
+{
+  "sparkMeApp": {
+    "locatie": {
+      "home": {
+        "title": "Locații",
+        "createLabel": "Adaugă o nouă locație",
+        "createOrEditLabel": "Creeare sau editare locație",
+        "notFound": "Nu a fost gasita nicio locație"
+      },
+      "created": "A fost adăugată o nouă locație cu id {{ param }}",
+      "updated": "Locația cu id {{ param }} a fost actualizată",
+      "deleted": "Locația cu id {{ param }} a fost ștearsă",
+      "delete": {
+        "question": "Sunteți sigur că doriți să ștergeți locația {{ id }}?"
+      },
+      "detail": {
+        "title": "Locație"
+      },
+      "denumire": "Denumire",
+      "descriere": "Descriere",
+      "latitudine": "Latitudine",
+      "longitudine": "Longitudine",
+      "tipAcces": "Tip Acces",
+      "user": "User"
+    }
+  }
+}

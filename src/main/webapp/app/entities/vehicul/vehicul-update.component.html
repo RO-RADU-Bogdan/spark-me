@@ -1,0 +1,135 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-vehicul-heading" jhiTranslate="sparkMeApp.vehicul.home.createOrEditLabel">Create or edit a Vehicul</h2>
+
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="sparkMeApp.vehicul.marca" for="field_marca">Marca</label>
+                    <input type="text" class="form-control" name="marca" id="field_marca"
+                           formControlName="marca"/>
+                    <div *ngIf="editForm.get('marca')!.invalid && (editForm.get('marca')!.dirty || editForm.get('marca')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('marca')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('marca')?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 50 }">
+                        This field cannot be longer than 50 characters.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="sparkMeApp.vehicul.model" for="field_model">Model</label>
+                    <input type="text" class="form-control" name="model" id="field_model"
+                           formControlName="model"/>
+                    <div *ngIf="editForm.get('model')!.invalid && (editForm.get('model')!.dirty || editForm.get('model')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('model')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('model')?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 50 }">
+                        This field cannot be longer than 50 characters.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="sparkMeApp.vehicul.anFabricatie" for="field_anFabricatie">An Fabricatie</label>
+                    <input type="number" class="form-control" name="anFabricatie" id="field_anFabricatie"
+                           formControlName="anFabricatie"/>
+                    <div *ngIf="editForm.get('anFabricatie')!.invalid && (editForm.get('anFabricatie')!.dirty || editForm.get('anFabricatie')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('anFabricatie')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('anFabricatie')?.errors?.min" jhiTranslate="entity.validation.min" [translateValues]="{ min: 1990 }">
+                            This field should be at least 1990.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('anFabricatie')?.errors?.max" jhiTranslate="entity.validation.max" [translateValues]="{ max: 2021 }">
+                            This field cannot be more than 2021.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('anFabricatie')?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="sparkMeApp.vehicul.culoare" for="field_culoare">Culoare</label>
+                    <input type="text" class="form-control" name="culoare" id="field_culoare"
+                           formControlName="culoare"/>
+                    <div *ngIf="editForm.get('culoare')!.invalid && (editForm.get('culoare')!.dirty || editForm.get('culoare')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('culoare')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('culoare')?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 50 }">
+                        This field cannot be longer than 50 characters.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="sparkMeApp.vehicul.descriere" for="field_descriere">Descriere</label>
+                    <input type="text" class="form-control" name="descriere" id="field_descriere"
+                           formControlName="descriere"/>
+                    <div *ngIf="editForm.get('descriere')!.invalid && (editForm.get('descriere')!.dirty || editForm.get('descriere')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('descriere')?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 255 }">
+                        This field cannot be longer than 255 characters.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="sparkMeApp.vehicul.conector" for="field_conector">Conector</label>
+                    <select class="form-control" name="conector" formControlName="conector" id="field_conector">
+                        <option value="TYPE1">{{ 'sparkMeApp.Conector.TYPE1' | translate }}</option>
+                        <option value="TYPE2">{{ 'sparkMeApp.Conector.TYPE2' | translate }}</option>
+                        <option value="TYPE3">{{ 'sparkMeApp.Conector.TYPE3' | translate }}</option>
+                        <option value="TYPE4">{{ 'sparkMeApp.Conector.TYPE4' | translate }}</option>
+                    </select>
+
+                    <div *ngIf="editForm.get('conector')!.invalid && (editForm.get('conector')!.dirty || editForm.get('conector')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('conector')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="sparkMeApp.vehicul.user" for="field_user">User</label>
+                    <select [attr.disabled]=true [(ngModel)] = "currentUser" class="form-control" id="field_user" name="user" formControlName="user">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="userOption.id === editForm.get('user')!.value?.id ? editForm.get('user')!.value : userOption" *ngFor="let userOption of users; trackBy: trackById">{{ userOption.login }}</option>
+                    </select>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

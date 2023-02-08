@@ -1,0 +1,27 @@
+{
+  "sparkMeApp": {
+    "incarcator": {
+      "home": {
+        "title": "Chargers",
+        "createLabel": "Add a new charger",
+        "createOrEditLabel": "Create or edit a charger",
+        "notFound": "No chargers found"
+      },
+      "created": "A new charger is created with id {{ param }}",
+      "updated": "A charger is updated with id {{ param }}",
+      "deleted": "A charger is deleted with id {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete charger {{ id }}?"
+      },
+      "detail": {
+        "title": "Charger"
+      },
+      "denumireConector": "Charger Name",
+      "conector": "Charging Port",
+      "descriereConector": "Charging Port Description",
+      "disponibilitate": "Availability",
+      "putere": "Power Output",
+      "statie": "Station"
+    }
+  }
+}

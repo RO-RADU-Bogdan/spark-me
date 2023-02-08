@@ -6,10 +6,17 @@
       "home": "Acasă",
       "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
       "entities": {
-        "main": "Entități",
+        "main": "Meniu",
         "bankAccount": "ContBancar",
         "label": "Etichetă",
         "operation": "Operație",
+        "vehicul": "Vehicule",
+        "rezervare": "Rezervări",
+        "locatie": "Locații",
+        "statie": "Stații",
+        "incarcator": "Încărcătoare",
+        "retea": "Rețele",
+        "harta": "Hartă",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {
@@ -126,7 +133,13 @@
       "maxbytes": "Acest câmp nu poate să fie mai mare de {{max}} bytes.",
       "pattern": "Acest câmp trebuie să corespundă șablonului {{pattern}}.",
       "number": "Acest câmp trebuie să fie numeric.",
-      "datetimelocal": "Acest câmp trebuie să conțină data și ora."
+      "datetimelocal": "Acest câmp trebuie să conțină data și ora.",
+      "invalidFinalHours": "Data de finalizare a incarcarii nu poate fi inaintea datei de inceput.",
+      "invalidStartHours": "Ora de inceput a incarcarii nu poate fi inaintea orei de creare a rezervarii.",
+      "rezervareExistenta": "Exista deja o rezervare in intervalul orar:",
+      "rezervareUrmatoareaOra": "Aveți deja o rezervare în următoarea oră.",
+      "rezervareMaxOre": "Rezervarea se poate face pentru maxim 12 ore.",
+      "rezervareIncarcatorNeselectat": "Vă rugăm să vă întoarceți pe pagina anterioară și să selectați un încărcător."
     }
   },
   "error": {
@@ -144,5 +157,7 @@
       "not.image": "File was expected to be an image but was found to be \"{{ fileType }}\""
     }
   },
-  "footer": "Acesta este subsolul paginii dumneavoastră"
+  "footerName": "RADU Bogdan-Ștefan",
+  "footerUniversity": "Universitatea Politehnica București",
+  "contact": "radu.bogdanstefan@yahoo.com"
 }

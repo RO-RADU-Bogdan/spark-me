@@ -1,0 +1,120 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-locatie-heading" jhiTranslate="sparkMeApp.locatie.home.createOrEditLabel">Create or edit a Locatie</h2>
+
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="sparkMeApp.locatie.denumire" for="field_denumire">Denumire</label>
+                    <input type="text" class="form-control" name="denumire" id="field_denumire"
+                           formControlName="denumire"/>
+                    <div *ngIf="editForm.get('denumire')!.invalid && (editForm.get('denumire')!.dirty || editForm.get('denumire')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('denumire')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('denumire')?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 50 }">
+                        This field cannot be longer than 50 characters.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="sparkMeApp.locatie.descriere" for="field_descriere">Descriere</label>
+                    <input type="text" class="form-control" name="descriere" id="field_descriere"
+                           formControlName="descriere"/>
+                    <div *ngIf="editForm.get('descriere')!.invalid && (editForm.get('descriere')!.dirty || editForm.get('descriere')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('descriere')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('descriere')?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 255 }">
+                        This field cannot be longer than 255 characters.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="sparkMeApp.locatie.latitudine" for="field_latitudine">Latitudine</label>
+                    <input type="number" class="form-control" name="latitudine" id="field_latitudine"
+                           formControlName="latitudine"/>
+                    <div *ngIf="editForm.get('latitudine')!.invalid && (editForm.get('latitudine')!.dirty || editForm.get('latitudine')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('latitudine')?.errors?.min" jhiTranslate="entity.validation.min" [translateValues]="{ min: -90 }">
+                            This field should be at least -90.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('latitudine')?.errors?.max" jhiTranslate="entity.validation.max" [translateValues]="{ max: 90 }">
+                            This field cannot be more than 90.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('latitudine')?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="sparkMeApp.locatie.longitudine" for="field_longitudine">Longitudine</label>
+                    <input type="number" class="form-control" name="longitudine" id="field_longitudine"
+                           formControlName="longitudine"/>
+                    <div *ngIf="editForm.get('longitudine')!.invalid && (editForm.get('longitudine')!.dirty || editForm.get('longitudine')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('longitudine')?.errors?.min" jhiTranslate="entity.validation.min" [translateValues]="{ min: -180 }">
+                            This field should be at least -180.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('longitudine')?.errors?.max" jhiTranslate="entity.validation.max" [translateValues]="{ max: 180 }">
+                            This field cannot be more than 180.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('longitudine')?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="sparkMeApp.locatie.tipAcces" for="field_tipAcces">Tip Acces</label>
+                    <select class="form-control" name="tipAcces" formControlName="tipAcces" id="field_tipAcces">
+                        <option value="PUBLIC">{{ 'sparkMeApp.TipAcces.PUBLIC' | translate }}</option>
+                        <option value="PRIVAT">{{ 'sparkMeApp.TipAcces.PRIVAT' | translate }}</option>
+                    </select>
+                    <div *ngIf="editForm.get('tipAcces')!.invalid && (editForm.get('tipAcces')!.dirty || editForm.get('tipAcces')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('tipAcces')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="sparkMeApp.locatie.user" for="field_user">User</label>
+                    <select [attr.disabled]=true [(ngModel)] = "currentUser" class="form-control" id="field_user" name="user" formControlName="user">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="userOption.id === editForm.get('user')!.value?.id ? editForm.get('user')!.value : userOption" *ngFor="let userOption of users; trackBy: trackById">{{ userOption.login }}</option>
+                    </select>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

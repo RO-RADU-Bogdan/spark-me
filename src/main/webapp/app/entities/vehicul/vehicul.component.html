@@ -1,0 +1,76 @@
+<div>
+    <h2 id="page-heading">
+        <fa-icon [icon]="faCar"></fa-icon>
+        <span jhiTranslate="sparkMeApp.vehicul.home.title">Vehiculs</span>
+
+        <button *jhiHasAnyAuthority="'ROLE_USER'" id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-vehicul" [routerLink]="['/vehicul/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span  jhiTranslate="sparkMeApp.vehicul.home.createLabel">
+            Create a new Vehicul
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="vehiculs?.length === 0">
+        <span jhiTranslate="sparkMeApp.vehicul.home.notFound">No vehiculs found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="vehiculs && vehiculs.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="reset.bind(this)">
+                    <th *jhiHasAnyAuthority="'ROLE_ADMIN'" scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="marca"><span jhiTranslate="sparkMeApp.vehicul.marca">Marca</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="model"><span jhiTranslate="sparkMeApp.vehicul.model">Model</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="anFabricatie"><span jhiTranslate="sparkMeApp.vehicul.anFabricatie">An Fabricatie</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="culoare"><span jhiTranslate="sparkMeApp.vehicul.culoare">Culoare</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="descriere"><span jhiTranslate="sparkMeApp.vehicul.descriere">Descriere</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="conector"><span jhiTranslate="sparkMeApp.vehicul.conector">Conector</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="user.login"><span jhiTranslate="sparkMeApp.vehicul.user">User</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+                <tr *ngFor="let vehicul of vehiculs ;trackBy: trackId">
+                    <td *jhiHasAnyAuthority="'ROLE_ADMIN'"><a [routerLink]="['/vehicul', vehicul.id, 'view']">{{ vehicul.id }}</a></td>
+                    <td>{{ vehicul.marca }}</td>
+                    <td>{{ vehicul.model }}</td>
+                    <td>{{ vehicul.anFabricatie }}</td>
+                    <td>{{ vehicul.culoare }}</td>
+                    <td>{{ vehicul.descriere }}</td>
+                    <td jhiTranslate="{{ 'sparkMeApp.Conector.' + vehicul.conector }}">{{ vehicul.conector }}</td>
+                    <td>
+                        {{ vehicul.user?.login }}
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/vehicul', vehicul.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                            </button>
+
+                            <button *jhiHasAnyAuthority="'ROLE_USER'" type="submit"
+                                    [routerLink]="['/vehicul', vehicul.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(vehicul)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,68 @@
+{
+  "name": "Rezervare",
+  "fields": [
+    {
+      "fieldName": "dataCreare",
+      "fieldType": "Instant",
+      "fieldValidateRules": [
+        "required"
+      ]
+    },
+    {
+      "fieldName": "dataExpirare",
+      "fieldType": "Instant",
+      "fieldValidateRules": [
+        "required"
+      ]
+    },
+    {
+      "fieldName": "dataStart",
+      "fieldType": "Instant",
+      "fieldValidateRules": [
+        "required"
+      ]
+    },
+    {
+      "fieldName": "dataFinal",
+      "fieldType": "Instant",
+      "fieldValidateRules": [
+        "required"
+      ]
+    },
+    {
+      "fieldName": "statut",
+      "fieldType": "StatutRezervare",
+      "fieldValues": "NECUNOSCUT,CONFIRMAT,NECONFIRMAT,EXPIRAT,FINALIZAT",
+      "fieldValidateRules": [
+        "required"
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "user",
+      "otherEntityRelationshipName": "rezervare",
+      "relationshipName": "user",
+      "otherEntityField": "login"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "incarcator",
+      "otherEntityRelationshipName": "rezervare",
+      "relationshipName": "incarcator",
+      "otherEntityField": "denumireConector"
+    }
+  ],
+  "changelogDate": "20210420142608",
+  "entityTableName": "rezervare",
+  "dto": "no",
+  "pagination": "infinite-scroll",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}

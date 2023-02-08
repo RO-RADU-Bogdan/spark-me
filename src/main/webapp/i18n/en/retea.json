@@ -1,0 +1,23 @@
+{
+  "sparkMeApp": {
+    "retea": {
+      "home": {
+        "title": "Network",
+        "createLabel": "Add a new network",
+        "createOrEditLabel": "Create or edit a network",
+        "notFound": "No networks found"
+      },
+      "created": "A new network is created with id {{ param }}",
+      "updated": "A network is updated with id {{ param }}",
+      "deleted": "A network is deleted with id {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete network {{ id }}?"
+      },
+      "detail": {
+        "title": "Network"
+      },
+      "denumire": "Name",
+      "descriere": "Description"
+    }
+  }
+}

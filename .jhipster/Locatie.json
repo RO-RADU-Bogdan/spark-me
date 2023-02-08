@@ -1,0 +1,71 @@
+{
+  "name": "Locatie",
+  "fields": [
+    {
+      "fieldName": "denumire",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "required",
+        "maxlength"
+      ],
+      "fieldValidateRulesMaxlength": "50"
+    },
+    {
+      "fieldName": "descriere",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "required",
+        "maxlength"
+      ],
+      "fieldValidateRulesMaxlength": "255"
+    },
+    {
+      "fieldName": "latitudine",
+      "fieldType": "Double",
+      "fieldValidateRules": [
+        "min",
+        "max"
+      ],
+      "fieldValidateRulesMin": "-90",
+      "fieldValidateRulesMax": "90"
+    },
+    {
+      "fieldName": "longitudine",
+      "fieldType": "Double",
+      "fieldValidateRules": [
+        "min",
+        "max"
+      ],
+      "fieldValidateRulesMin": "-180",
+      "fieldValidateRulesMax": "180"
+    },
+    {
+      "fieldName": "tipAcces",
+      "fieldType": "TipAcces",
+      "fieldValues": "PUBLIC,PRIVAT",
+      "fieldValidateRules": [
+        "required"
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "user",
+      "otherEntityRelationshipName": "locatie",
+      "relationshipName": "user",
+      "otherEntityField": "login"
+    }
+  ],
+  "changelogDate": "20210420142708",
+  "entityTableName": "locatie",
+  "dto": "no",
+  "pagination": "infinite-scroll",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}

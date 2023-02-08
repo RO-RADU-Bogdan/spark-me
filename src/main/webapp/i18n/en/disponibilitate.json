@@ -1,0 +1,10 @@
+{
+  "sparkMeApp": {
+    "Disponibilitate": {
+      "null": "",
+      "NECUNOSCUT": "UNKNOWN",
+      "DISPONIBIL": "AVAILABLE",
+      "OCUPAT": "BUSY"
+    }
+  }
+}

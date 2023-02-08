@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs';
 import { LoginModalService } from 'app/core/login/login-modal.service';
 import { AccountService } from 'app/core/auth/account.service';
 import { Account } from 'app/core/user/account.model';
+import { RezervareService } from 'app/entities/rezervare/rezervare.service';
 
 @Component({
   selector: 'jhi-home',
@@ -14,10 +15,18 @@ export class HomeComponent implements OnInit, OnDestroy {
   account: Account | null = null;
   authSubscription?: Subscription;
 
-  constructor(private accountService: AccountService, private loginModalService: LoginModalService) {}
+  constructor(
+    private accountService: AccountService,
+    private loginModalService: LoginModalService,
+    private rezervareService: RezervareService
+  ) {}
 
   ngOnInit(): void {
     this.authSubscription = this.accountService.getAuthenticationState().subscribe(account => (this.account = account));
+
+    // Call startThread() from API:
+    //this.rezervareService.startThreadCheckRezervari().subscribe();
+    //
   }
 
   isAuthenticated(): boolean {

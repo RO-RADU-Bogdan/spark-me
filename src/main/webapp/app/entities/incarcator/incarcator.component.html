@@ -1,0 +1,76 @@
+<div>
+    <h2 id="page-heading">
+        <fa-icon [icon]="faBatteryThreeQuarters"></fa-icon>
+        <span jhiTranslate="sparkMeApp.incarcator.home.title">Incarcators</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-incarcator" [routerLink]="['/incarcator/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span  jhiTranslate="sparkMeApp.incarcator.home.createLabel">
+            Create a new Incarcator
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="incarcators?.length === 0">
+        <span jhiTranslate="sparkMeApp.incarcator.home.notFound">No incarcators found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="incarcators && incarcators.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="reset.bind(this)">
+                    <th *jhiHasAnyAuthority="'ROLE_ADMIN'" scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="denumireConector"><span jhiTranslate="sparkMeApp.incarcator.denumireConector">Denumire Conector</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="conector"><span jhiTranslate="sparkMeApp.incarcator.conector">Conector</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="descriereConector"><span jhiTranslate="sparkMeApp.incarcator.descriereConector">Descriere Conector</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="disponibilitate"><span jhiTranslate="sparkMeApp.incarcator.disponibilitate">Disponibilitate</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="putere"><span jhiTranslate="sparkMeApp.incarcator.putere">Putere</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="statie.denumire"><span jhiTranslate="sparkMeApp.incarcator.statie">Statie</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+                <tr *ngFor="let incarcator of incarcators ;trackBy: trackId">
+                    <td *jhiHasAnyAuthority="'ROLE_ADMIN'"><a [routerLink]="['/incarcator', incarcator.id, 'view']">{{ incarcator.id }}</a></td>
+                    <td>{{ incarcator.denumireConector }}</td>
+                    <td jhiTranslate="{{ 'sparkMeApp.Conector.' + incarcator.conector }}">{{ incarcator.conector }}</td>
+                    <td>{{ incarcator.descriereConector }}</td>
+                    <td jhiTranslate="{{ 'sparkMeApp.Disponibilitate.' + incarcator.disponibilitate }}">{{ incarcator.disponibilitate }}</td>
+                    <td>{{ incarcator.putere + " kW" }}</td>
+                    <td>
+                        <div *ngIf="incarcator.statie">
+                            <a [routerLink]="['/statie', incarcator.statie?.id, 'view']" >{{ incarcator.statie?.denumire }}</a>
+                        </div>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/incarcator', incarcator.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/incarcator', incarcator.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(incarcator)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

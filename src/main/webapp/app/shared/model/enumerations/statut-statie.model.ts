@@ -1,0 +1,9 @@
+export const enum StatutStatie {
+  NECUNOSCUT = 'NECUNOSCUT',
+
+  DISPONIBIL = 'DISPONIBIL',
+
+  OCUPAT = 'OCUPAT',
+
+  INDISPONIBIL = 'INDISPONIBIL',
+}

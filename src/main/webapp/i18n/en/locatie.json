@@ -1,0 +1,27 @@
+{
+  "sparkMeApp": {
+    "locatie": {
+      "home": {
+        "title": "Location",
+        "createLabel": "Add a new location",
+        "createOrEditLabel": "Create or edit a location",
+        "notFound": "No locations found"
+      },
+      "created": "A new location is created with id {{ param }}",
+      "updated": "A location is updated with id {{ param }}",
+      "deleted": "A location is deleted with id {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete location {{ id }}?"
+      },
+      "detail": {
+        "title": "Location"
+      },
+      "denumire": "Name",
+      "descriere": "Description",
+      "latitudine": "Latitude",
+      "longitudine": "Longitude",
+      "tipAcces": "Acces Type",
+      "user": "User"
+    }
+  }
+}

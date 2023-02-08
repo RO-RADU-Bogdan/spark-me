@@ -1,7 +1,11 @@
 {
   "home": {
-    "title": "Bun venit, Java Hipster!",
-    "subtitle": "Aceasta este pagina ta de start",
+    "title": "SparkMe - Proiect de diplomă",
+    "subtitle": "Bine ai venit! Platforma Web <span style=\"font-weight:500\"> \"SparkMe\" </span>, dezvoltată în cadrul acestui proiect de diplomă permite utilizatorilor să rezerve stații de încărcare pentru autovehciule electrice. Aceste statii sunt adăugate și gestionate de administratorii platformei. Modul de funcționare al platformei este descris în continuare:",
+    "paragraf1": "Pentru a accesa și utiliza platforma este necesară autentificarea folosind un cont existent sau crearea unui cont nou ce va trebui activat folosind link-ul primit pe adresa de mail furnizată. Fiecare cont creat nou va avea implicit drepturi de utilizator, astfel fiind restricționat accesul la anumite funcționalități la care doar un administrator trebuie să aibă acces. Odată autentificat, utilizatorul poate începe prin adăugarea unui vehicul în contul său. După ce utilizatorul și-a adăugat vehiculul, acesta poate incepe să facă rezervări folosind atât harta (recomandat) cât și meniul.",
+    "paragraf2": "Pentru a face o rezervare, utilizatorul va alege o stație de pe hartă apăsând click pe aceasta. Selectând o stație se va deschide o fereastra ce arată anumite informații semnificative precum: disponibilitatea stației, detalii despre cost și rețeaua din care face parte stația. Apăsând pe butonul <span style=\"font-weight:450\"> \"Vezi detalii\" </span>, utilizatorul va putea vedea mai multe detalii despre stație dar și încărcătoarele asociate stației. In partea de jos a paginii se poate vedea lista încărcătoarelor asociate stației, precum și alte caracteristici ale acestora. Pentru a face o rezervare utilizatorul trebuie să apese pe butonul <span style=\"font-weight:450\"> \"Rezervă\" </span>, iar apoi să completeze intervalul orar în care va avea loc încărcarea. Dacă intervalul orar ales nu este disponibil se vor afișa mesaje de avertizare specfice. Dacă intervalul ales este valid se poate apasă butonul <span style=\"font-weight:450\"> \"Salvare\" </span> pentru a crea rezervarea.",
+    "paragraf3": "Rezervarea creată va fi vizibilă pe primul rând din pagina de rezervări având statutul de neconfirmat. O rezervare neconfirmată va expira la 30 minute după ce a fost creată, iar utilizatorul va fi notificat pe mail că rezervarea sa a expirat. Odată confirmată, rezervarea se va finaliza la ora de finalizare a încărcării, iar utilizatorul va fi notificat pe mail că rezervarea sa a fost finalizată cu succes.",
+    "paragraf4": "",
     "logged": {
       "message": "Ești autentificat cu numele de utilizator \"{{username}}\"."
     },

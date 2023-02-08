@@ -1,7 +1,11 @@
 {
   "home": {
-    "title": "Welcome, Java Hipster!",
-    "subtitle": "This is your homepage",
+    "title": "SparkMe - Bachelor's Degree Project",
+    "subtitle": "Welcome! The <span style=\"font-weight:500\"> \"SparkMe\" </span> web platform, developed as part of this diploma project, allows users to book charging stations for electric vehicles. These charging stations are added and managed by the platform administrators. The way the platform works is described below:",
+    "paragraf1": "To access and use the platform it is necessary to authenticate using an existing account or by creating a new account which will have to be activated using the link received on the user's email address. Each newly created account will have user rights by default, thus restricting access to certain features that only an administrator should have access to. Once logged in, the user can start by adding a vehicle to their account. Once the user has added their vehicle, they can start making reservations using both the map (recommended) and the menu.",
+    "paragraf2": "To make a reservation, the user will choose a station on the map by clicking on it. Selecting a station will open a window showing some significant information such as: station availability, cost details and the network which the station is part of. By clicking on the <span style=\"font-weight:450\"> \"View details\" </span> button, the user will be able to see more details about the station but also the chargers associated with the station. In order to book an electric charger, the user must press the <span style=\"font-weight:450\"> \"Book\" </span> button and then complete the time interval in which the electric car will be charged. If the selected time interval is not available, warning messages will be displayed. If the selected range is valid, you can press the <span style=\"font-weight:450\"> \"Save\" </span> button to create the reservation.",
+    "paragraf3": "The booking created will be visible on the first page of the bookings page with the status of unconfirmed. An unconfirmed reservation will expire 30 minutes after it has been created, and the user will be notified by email that their reservation has expired. Once confirmed, the reservation will be completed at the final date, and the user will be notified via email that his reservation has been successfully completed.",
+    "paragraf4": "",
     "logged": {
       "message": "You are logged in as user \"{{username}}\"."
     },

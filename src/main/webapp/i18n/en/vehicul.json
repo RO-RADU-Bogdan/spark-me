@@ -1,0 +1,28 @@
+{
+  "sparkMeApp": {
+    "vehicul": {
+      "home": {
+        "title": "Vehicles",
+        "createLabel": "Add a new Vehicle",
+        "createOrEditLabel": "Create or edit a vehicle",
+        "notFound": "No vehicle found!"
+      },
+      "created": "A new vehicle is created with id {{ param }}",
+      "updated": "A vehicle is updated with id {{ param }}",
+      "deleted": "A vehicle is deleted with id {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete vehicle {{ id }}?"
+      },
+      "detail": {
+        "title": "Vehicle"
+      },
+      "marca": "Make",
+      "model": "Model",
+      "anFabricatie": "Manufacturing Year",
+      "culoare": "Color",
+      "descriere": "Description",
+      "conector": "Charging Port",
+      "user": "User"
+    }
+  }
+}

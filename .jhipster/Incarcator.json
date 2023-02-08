@@ -1,0 +1,69 @@
+{
+  "name": "Incarcator",
+  "fields": [
+    {
+      "fieldName": "denumireConector",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "required",
+        "maxlength"
+      ],
+      "fieldValidateRulesMaxlength": "55"
+    },
+    {
+      "fieldName": "conector",
+      "fieldType": "Conector",
+      "fieldValues": "TYPE1,TYPE2,TYPE3,TYPE4",
+      "fieldValidateRules": [
+        "required"
+      ]
+    },
+    {
+      "fieldName": "descriereConector",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "maxlength"
+      ],
+      "fieldValidateRulesMaxlength": "255"
+    },
+    {
+      "fieldName": "disponibilitate",
+      "fieldType": "Disponibilitate",
+      "fieldValues": "NECUNOSCUT,DISPONIBIL,OCUPAT",
+      "fieldValidateRules": [
+        "required"
+      ]
+    },
+    {
+      "fieldName": "putere",
+      "fieldType": "Integer",
+      "fieldValidateRules": [
+        "required",
+        "min",
+        "max"
+      ],
+      "fieldValidateRulesMin": "0",
+      "fieldValidateRulesMax": "999"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "statie",
+      "otherEntityRelationshipName": "incarcator",
+      "relationshipName": "statie",
+      "otherEntityField": "denumire"
+    }
+  ],
+  "changelogDate": "20210420142908",
+  "entityTableName": "incarcator",
+  "dto": "no",
+  "pagination": "infinite-scroll",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}

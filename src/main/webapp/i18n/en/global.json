@@ -6,7 +6,14 @@
       "home": "Home",
       "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
       "entities": {
-        "main": "Entities",
+        "main": "Menu",
+        "vehicul": "Vehicles",
+        "rezervare": "Bookings",
+        "locatie": "Locations",
+        "statie": "Stations",
+        "incarcator": "Chargers",
+        "retea": "Networks",
+        "harta": "Map",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {
@@ -118,7 +125,13 @@
       "pattern": "This field should follow pattern for {{ pattern }}.",
       "number": "This field should be a number.",
       "datetimelocal": "This field should be a date and time.",
-      "patternLogin": "This field can only contain letters, digits and e-mail addresses."
+      "patternLogin": "This field can only contain letters, digits and e-mail addresses.",
+      "invalidFinalHours": "The booking final date cannot be set before the start date.",
+      "invalidStartHours": "The charging start time cannot be set before the booking's creation time.",
+      "rezervareExistenta": "There is already a booking in the time frame:",
+      "rezervareUrmatoareaOra" : "You already have a booking in the next hour.",
+      "rezervareMaxOre": "The booking can be made for a maximum of 12 hours.",
+      "rezervareIncarcatorNeselectat": "Please return to the previous page and select a charger."
     }
   },
   "error": {
@@ -136,5 +149,7 @@
       "not.image": "File was expected to be an image but was found to be \"{{ fileType }}\""
     }
   },
-  "footer": "This is your footer"
+  "footerName": "RADU Bogdan-Ștefan",
+  "footerUniversity": "Politehnica University of Bucharest",
+  "contact": "radu.bogdanstefan@yahoo.com"
 }

@@ -1,0 +1,11 @@
+export const enum StatutRezervare {
+  NECUNOSCUT = 'NECUNOSCUT',
+
+  CONFIRMAT = 'CONFIRMAT',
+
+  NECONFIRMAT = 'NECONFIRMAT',
+
+  EXPIRAT = 'EXPIRAT',
+
+  FINALIZAT = 'FINALIZAT',
+}

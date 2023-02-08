@@ -1,0 +1,103 @@
+{
+  "name": "Statie",
+  "fields": [
+    {
+      "fieldName": "denumire",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "required",
+        "maxlength"
+      ],
+      "fieldValidateRulesMaxlength": "50"
+    },
+    {
+      "fieldName": "producator",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "required",
+        "maxlength"
+      ],
+      "fieldValidateRulesMaxlength": "50"
+    },
+    {
+      "fieldName": "model",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "required",
+        "maxlength"
+      ],
+      "fieldValidateRulesMaxlength": "50"
+    },
+    {
+      "fieldName": "latitudine",
+      "fieldType": "Double",
+      "fieldValidateRules": [
+        "min",
+        "max"
+      ],
+      "fieldValidateRulesMin": "-90",
+      "fieldValidateRulesMax": "90"
+    },
+    {
+      "fieldName": "longitudine",
+      "fieldType": "Double",
+      "fieldValidateRules": [
+        "min",
+        "max"
+      ],
+      "fieldValidateRulesMin": "-180",
+      "fieldValidateRulesMax": "180"
+    },
+    {
+      "fieldName": "statut",
+      "fieldType": "StatutStatie",
+      "fieldValues": "NECUNOSCUT,DISPONIBIL,OCUPAT,INDISPONIBIL",
+      "fieldValidateRules": [
+        "required"
+      ]
+    },
+    {
+      "fieldName": "tipCost",
+      "fieldType": "TipCost",
+      "fieldValues": "NECUNOSCUT,GRATUIT,PLATA",
+      "fieldValidateRules": [
+        "required"
+      ]
+    },
+    {
+      "fieldName": "descriereCost",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "maxlength"
+      ],
+      "fieldValidateRulesMaxlength": "255"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "locatie",
+      "otherEntityRelationshipName": "statie",
+      "relationshipName": "locatie",
+      "otherEntityField": "denumire"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "retea",
+      "otherEntityRelationshipName": "statie",
+      "relationshipName": "retea",
+      "otherEntityField": "denumire"
+    }
+  ],
+  "changelogDate": "20210420142808",
+  "entityTableName": "statie",
+  "dto": "no",
+  "pagination": "infinite-scroll",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}

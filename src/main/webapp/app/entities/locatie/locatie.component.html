@@ -1,0 +1,74 @@
+<div>
+    <h2 id="page-heading">
+        <fa-icon [icon]="faLocationArrow"></fa-icon>
+        <span jhiTranslate="sparkMeApp.locatie.home.title">Locaties</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-locatie" [routerLink]="['/locatie/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span  jhiTranslate="sparkMeApp.locatie.home.createLabel">
+            Create a new Locatie
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="locaties?.length === 0">
+        <span jhiTranslate="sparkMeApp.locatie.home.notFound">No locaties found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="locaties && locaties.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="reset.bind(this)">
+                    <th *jhiHasAnyAuthority="'ROLE_ADMIN'" scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="denumire"><span jhiTranslate="sparkMeApp.locatie.denumire">Denumire</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="descriere"><span jhiTranslate="sparkMeApp.locatie.descriere">Descriere</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="latitudine"><span jhiTranslate="sparkMeApp.locatie.latitudine">Latitudine</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="longitudine"><span jhiTranslate="sparkMeApp.locatie.longitudine">Longitudine</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="tipAcces"><span jhiTranslate="sparkMeApp.locatie.tipAcces">Tip Acces</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="user.login"><span jhiTranslate="sparkMeApp.locatie.user">User</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+                <tr *ngFor="let locatie of locaties ;trackBy: trackId">
+                    <td *jhiHasAnyAuthority="'ROLE_ADMIN'"><a [routerLink]="['/locatie', locatie.id, 'view']">{{ locatie.id }}</a></td>
+                    <td>{{ locatie.denumire }}</td>
+                    <td>{{ locatie.descriere }}</td>
+                    <td>{{ locatie.latitudine }}</td>
+                    <td>{{ locatie.longitudine }}</td>
+                    <td jhiTranslate="{{ 'sparkMeApp.TipAcces.' + locatie.tipAcces }}">{{ locatie.tipAcces }}</td>
+                    <td>
+                        {{ locatie.user?.login }}
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/locatie', locatie.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/locatie', locatie.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(locatie)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,12 @@
+{
+  "sparkMeApp": {
+    "StatutRezervare": {
+      "null": "",
+      "NECUNOSCUT": "UNKNOWN",
+      "CONFIRMAT": "CONFIRMED",
+      "NECONFIRMAT": "UNCONFIRMED",
+      "EXPIRAT": "EXPIRED",
+      "FINALIZAT": "COMPLETED"
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "sparkMeApp": {
+    "TipCost": {
+      "null": "",
+      "NECUNOSCUT": "NECUNOSCUT",
+      "GRATUIT": "GRATUIT",
+      "PLATA": "PLATA"
+    }
+  }
+}

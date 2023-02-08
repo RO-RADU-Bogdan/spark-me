@@ -10,6 +10,9 @@ import { IUser } from './user.model';
 export class UserService {
   public resourceUrl = SERVER_API_URL + 'api/users';
 
+  // Accesare api/account pentru a primi user curent logat:
+  public accountUrl = SERVER_API_URL + 'api/account';
+
   constructor(private http: HttpClient) {}
 
   create(user: IUser): Observable<IUser> {
@@ -19,6 +22,12 @@ export class UserService {
   update(user: IUser): Observable<IUser> {
     return this.http.put<IUser>(this.resourceUrl, user);
   }
+
+  // Primeste utilizatorul logat curent
+  findCurrentUser(): Observable<IUser> {
+    return this.http.get<IUser>(`${this.accountUrl}`);
+  }
+  //
 
   find(login: string): Observable<IUser> {
     return this.http.get<IUser>(`${this.resourceUrl}/${login}`);

@@ -1,0 +1,57 @@
+
+<div class="row justify-content-center">
+    <div class="col-12 d-flex justify-content-center align-items-center">
+        <div class="p-3 border border-primary rounded" *ngIf="rezervare">
+            <h2><fa-icon [icon]="faBook"></fa-icon><span jhiTranslate="sparkMeApp.rezervare.detail.title">Rezervare</span> {{ rezervare.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="sparkMeApp.rezervare.dataCreare">Data Creare</span></dt>
+                <dd>
+                    <span>{{ dataCreareString }}</span>
+                </dd>
+                <dt><span jhiTranslate="sparkMeApp.rezervare.dataExpirare">Data Expirare</span></dt>
+                <dd>
+                    <span>{{ dataExpirareString }}</span>
+                </dd>
+                <dt><span jhiTranslate="sparkMeApp.rezervare.dataStart">Data Start</span></dt>
+                <dd>
+                    <span>{{ dataStartString }}</span>
+                </dd>
+                <dt><span jhiTranslate="sparkMeApp.rezervare.dataFinal">Data Final</span></dt>
+                <dd>
+                    <span>{{ dataFinalString }}</span>
+                </dd>
+                <dt><span jhiTranslate="sparkMeApp.rezervare.statut">Statut</span></dt>
+                <dd>
+                    <span jhiTranslate="{{ 'sparkMeApp.StatutRezervare.' + rezervare.statut }}">{{ rezervare.statut }}</span>
+                </dd>
+                <dt><span jhiTranslate="sparkMeApp.rezervare.user">User</span></dt>
+                <dd>
+                    {{ rezervare.user?.login }}
+                </dd>
+                <dt><span jhiTranslate="sparkMeApp.rezervare.incarcator">Incarcator</span></dt>
+                <dd>
+                    <div *ngIf="rezervare.incarcator">
+                        <a [routerLink]="['/incarcator', rezervare.incarcator?.id, 'view']">{{ rezervare.incarcator?.denumireConector }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button *jhiHasAnyAuthority="''" type="button"
+                    [routerLink]="['/rezervare', rezervare.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

@@ -9,6 +9,15 @@ import { AccountService } from 'app/core/auth/account.service';
 import { LoginModalService } from 'app/core/login/login-modal.service';
 import { LoginService } from 'app/core/login/login.service';
 import { ProfileService } from 'app/layouts/profiles/profile.service';
+// FA Icons:
+import { faBook } from '@fortawesome/free-solid-svg-icons';
+import { faCar } from '@fortawesome/free-solid-svg-icons';
+import { faChargingStation } from '@fortawesome/free-solid-svg-icons';
+import { faLocationArrow } from '@fortawesome/free-solid-svg-icons';
+import { faUsers } from '@fortawesome/free-solid-svg-icons';
+import { faBatteryThreeQuarters } from '@fortawesome/free-solid-svg-icons';
+import { faMapMarkedAlt } from '@fortawesome/free-solid-svg-icons';
+//
 
 @Component({
   selector: 'jhi-navbar',
@@ -16,6 +25,16 @@ import { ProfileService } from 'app/layouts/profiles/profile.service';
   styleUrls: ['navbar.scss'],
 })
 export class NavbarComponent implements OnInit {
+  // FA Icons:
+  faBook = faBook;
+  faCar = faCar;
+  faChargingStation = faChargingStation;
+  faLocationArrow = faLocationArrow;
+  faUsers = faUsers;
+  faBatteryThreeQuarters = faBatteryThreeQuarters;
+  faMapMarkedAlt = faMapMarkedAlt;
+  //
+
   inProduction?: boolean;
   isNavbarCollapsed = true;
   languages = LANGUAGES;

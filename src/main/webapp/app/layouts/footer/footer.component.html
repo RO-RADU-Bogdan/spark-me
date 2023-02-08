@@ -1,3 +1,34 @@
-<div class="footer">
-    <p jhiTranslate="footer">This is your footer</p>
+<style>
+    .footer{
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #1A1A1A;
+  color: white;
+  text-align: center;
+}
+
+a.contact {
+  color: white;
+}
+
+a:hover{
+  color: silver;
+}
+
+</style>
+
+<div class="container-fluid mt-5">
+<div class="footer mt-3">
+    <fa-icon [icon]="faLinkedin"></fa-icon>
+    <a class="contact" href="https://www.linkedin.com/in/bogdan-radu-761317185/" target="_blank" jhiTranslate="footerName">RADU Bogdan-Stefan</a>
+    -
+    <fa-icon [icon]="faUniversity"></fa-icon>
+    <a href="https://upb.ro/en/" target="_blank" class="contact my-0" jhiTranslate="footerUniversity">Upb</a>
+    - 2021
+    <br>
+    <fa-icon [icon]="faEnvelope"></fa-icon>
+    <a href="mailto:radu.bogdanstefan@yahoo.com" target="_blank" class="contact my-0" jhiTranslate="contact">This is your contact</a>
+</div>
 </div>

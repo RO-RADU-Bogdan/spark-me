@@ -1,0 +1,28 @@
+{
+  "sparkMeApp": {
+    "rezervare": {
+      "home": {
+        "title": "Bookings",
+        "createLabel": "New Booking",
+        "createOrEditLabel": "Create or edit a booking",
+        "notFound": "No bookings found!"
+      },
+      "created": "A new booking is created with id {{ param }}",
+      "updated": "A booking is updated with id {{ param }}",
+      "deleted": "A booking is deleted with id {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete booking {{ id }}?"
+      },
+      "detail": {
+        "title": "Booking"
+      },
+      "dataCreare": "Creation Date",
+      "dataExpirare": "Expiration Date",
+      "dataStart": "Start Date",
+      "dataFinal": "Final Date",
+      "statut": "Status",
+      "user": "User",
+      "incarcator": "Charger"
+    }
+  }
+}

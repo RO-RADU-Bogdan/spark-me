@@ -1,0 +1,11 @@
+{
+  "sparkMeApp": {
+    "StatutStatie": {
+      "null": "",
+      "NECUNOSCUT": "UNKNOWN",
+      "DISPONIBIL": "AVAILABLE",
+      "OCUPAT": "BUSY",
+      "INDISPONIBIL": "UNAVAILABLE"
+    }
+  }
+}

@@ -1,0 +1,50 @@
+<div class="row justify-content-center">
+    <div class="col-12 d-flex justify-content-center align-items-center">
+        <div class="p-3 border border-primary rounded" *ngIf="incarcator">
+            
+            <h2><fa-icon [icon]="faBatteryThreeQuarters"></fa-icon><span>{{ incarcator.denumireConector }}</span></h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="sparkMeApp.incarcator.conector">Conector</span></dt>
+                <dd>
+                    <span jhiTranslate="{{ 'sparkMeApp.Conector.' + incarcator.conector }}">{{ incarcator.conector }}</span>
+                </dd>
+                <dt><span jhiTranslate="sparkMeApp.incarcator.descriereConector">Descriere Conector</span></dt>
+                <dd>
+                    <span>{{ incarcator.descriereConector }}</span>
+                </dd>
+                <dt><span jhiTranslate="sparkMeApp.incarcator.disponibilitate">Disponibilitate</span></dt>
+                <dd>
+                    <span jhiTranslate="{{ 'sparkMeApp.Disponibilitate.' + incarcator.disponibilitate }}">{{ incarcator.disponibilitate }}</span>
+                </dd>
+                <dt><span jhiTranslate="sparkMeApp.incarcator.putere">Putere</span></dt>
+                <dd>
+                    <span>{{ incarcator.putere + " kW"}}</span>
+                </dd>
+                <dt><span jhiTranslate="sparkMeApp.incarcator.statie">Statie</span></dt>
+                <dd>
+                    <div *ngIf="incarcator.statie">
+                        <a [routerLink]="['/statie', incarcator.statie?.id, 'view']">{{ incarcator.statie?.denumire }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button *jhiHasAnyAuthority="'ROLE_ADMIN'" type="button"
+                    [routerLink]="['/incarcator', incarcator.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+       
+        </div>
+    </div>
+</div>

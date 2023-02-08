@@ -1,0 +1,33 @@
+{
+  "sparkMeApp": {
+    "statie": {
+      "home": {
+        "title": "Stations",
+        "createLabel": "Add a new station",
+        "createOrEditLabel": "Create or edit a station",
+        "notFound": "No stations found"
+      },
+      "created": "A new station is created with id {{ param }}",
+      "updated": "A station is updated with id {{ param }}",
+      "deleted": "A station is deleted with id {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete station {{ id }}?"
+      },
+      "detail": {
+        "title": "Station"
+      },
+      "denumire": "Name",
+      "producator": "Manufacturer",
+      "model": "Model",
+      "latitudine": "Latitude",
+      "longitudine": "Longitude",
+      "statut": "Status",
+      "tipCost": "Cost",
+      "descriereCost": "Cost Description",
+      "locatie": "Location",
+      "retea": "Network",
+      "listaIncarcatoare": "Chargers:",
+      "butonRezerva": "Book"
+    }
+  }
+}
